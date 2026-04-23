@@ -1,447 +1,126 @@
-# Mô tả dataset DATATHON 2026
+# Mô tả dataset DATATHON 2026 từ Initial_data_audit
 
 ## 1. Tổng quan
 
-Bộ dữ liệu gồm **14 file CSV**, mô phỏng hoạt động của một doanh nghiệp **thời trang thương mại điện tử** tại Việt Nam.  
-Dataset được chia thành 4 nhóm chính:
+Tài liệu này tóm tắt bộ dữ liệu dựa trên kết quả kiểm tra trong `Initial_data_audit.ipynb`.
+Mục tiêu là ghi lại những kết luận chính về cấu trúc dữ liệu, khả năng join, độ đầy đủ và mức độ sẵn sàng cho EDA/forecasting, thay vì mô tả dài theo từng bảng.
 
-- **Master**: dữ liệu danh mục nền
-- **Transaction**: dữ liệu giao dịch
-- **Analytical**: dữ liệu tổng hợp phục vụ phân tích và dự báo
-- **Operational**: dữ liệu vận hành
+Bộ dữ liệu đang được load thành **15 bảng** trong notebook audit:
 
-### Danh sách file
+- `customers`
+- `geography`
+- `inventory`
+- `order_items`
+- `orders`
+- `payments`
+- `products`
+- `promotions`
+- `returns`
+- `reviews`
+- `sales`
+- `sample_submission`
+- `shipments`
+- `submission`
+- `web_traffic`
 
-- `customers.csv`
-- `geography.csv`
-- `inventory.csv`
-- `order_items.csv`
-- `orders.csv`
-- `payments.csv`
-- `products.csv`
-- `promotions.csv`
-- `returns.csv`
-- `reviews.csv`
-- `sales.csv`
-- `sample_submission.csv`
-- `shipments.csv`
-- `web_traffic.csv`
+## 2. Tóm tắt cấu trúc
 
----
+Bảng tổng hợp được rút ra từ phần load data:
 
-## 2. Kích thước từng bảng
-
-| File | Số dòng | Số cột | Vai trò chính |
+| Table | Rows | Columns | Parsed date columns |
 |---|---:|---:|---|
-| customers.csv | 121,930 | 7 | Thông tin khách hàng |
-| geography.csv | 39,948 | 4 | Mã zip, city, region, district |
-| inventory.csv | 60,247 | 17 | Tồn kho theo tháng và sản phẩm |
-| order_items.csv | 714,669 | 7 | Chi tiết dòng sản phẩm trong đơn |
-| orders.csv | 646,945 | 8 | Thông tin đơn hàng |
-| payments.csv | 646,945 | 4 | Thanh toán theo đơn hàng |
-| products.csv | 2,412 | 8 | Danh mục sản phẩm |
-| promotions.csv | 50 | 10 | Chương trình khuyến mãi |
-| returns.csv | 39,939 | 7 | Thông tin trả hàng |
-| reviews.csv | 113,551 | 7 | Đánh giá sản phẩm |
-| sales.csv | 3,833 | 3 | Doanh thu theo ngày |
-| sample_submission.csv | 548 | 3 | File mẫu nộp bài |
-| shipments.csv | 566,067 | 4 | Thông tin giao hàng |
-| web_traffic.csv | 3,652 | 7 | Lưu lượng truy cập website theo ngày |
-
----
-
-## 3. Mô tả chi tiết từng bảng
-
-### 3.1 `products.csv`
-**Vai trò:** Danh mục sản phẩm, dùng làm bảng tham chiếu trung tâm khi phân tích doanh thu, lợi nhuận, trả hàng và tồn kho.
-
-**Các cột chính:**
-- `product_id`: khóa chính
-- `product_name`: tên sản phẩm
-- `category`: danh mục sản phẩm
-- `segment`: phân khúc sản phẩm
-- `size`: kích cỡ
-- `color`: màu sắc
-- `price`: giá bán lẻ
-- `cogs`: giá vốn
-
-**Ứng dụng:**
-- Tính biên lợi nhuận gộp
-- So sánh hiệu quả theo `category`, `segment`, `size`, `color`
-- Join với `order_items`, `returns`, `inventory`
-
----
-
-### 3.2 `customers.csv`
-**Vai trò:** Chứa thông tin khách hàng phục vụ phân tích hành vi mua sắm và phân khúc khách hàng.
-
-**Các cột chính:**
-- `customer_id`: khóa chính
-- `zip`: mã bưu chính
-- `city`: thành phố
-- `signup_date`: ngày đăng ký
-- `gender`: giới tính
-- `age_group`: nhóm tuổi
-- `acquisition_channel`: kênh đăng ký
-
-**Ứng dụng:**
-- Phân tích khách hàng theo độ tuổi, giới tính, nguồn acquisition
-- Tính số đơn trung bình trên mỗi khách hàng
-- Phân tích cohort hoặc retention khi kết hợp với `orders`
-
----
-
-### 3.3 `geography.csv`
-**Vai trò:** Bảng địa lý dùng để ánh xạ mã vùng.
-
-**Các cột chính:**
-- `zip`: khóa chính
-- `city`
-- `region`
-- `district`
-
-**Ứng dụng:**
-- Phân tích hiệu quả kinh doanh theo khu vực
-- Kết hợp với `customers` hoặc `orders` để phân tích doanh thu theo vùng
-- Phục vụ EDA theo city/region
-
----
-
-### 3.4 `orders.csv`
-**Vai trò:** Bảng trung tâm ghi nhận đơn hàng.
-
-**Các cột chính:**
-- `order_id`: khóa chính
-- `order_date`: ngày đặt hàng
-- `customer_id`
-- `zip`
-- `order_status`
-- `payment_method`
-- `device_type`
-- `order_source`
-
-**Ứng dụng:**
-- Phân tích số lượng đơn theo thời gian
-- Tính tần suất mua hàng theo khách hàng
-- Phân tích trạng thái đơn hàng
-- Phân tích hiệu quả theo thiết bị, nguồn đơn hàng, phương thức thanh toán
-
-**Nhận xét:**
-- Đây là bảng lõi cho cả MCQ, EDA và feature engineering
-
----
-
-### 3.5 `order_items.csv`
-**Vai trò:** Chi tiết từng dòng sản phẩm trong mỗi đơn hàng.
-
-**Các cột chính:**
-- `order_id`
-- `product_id`
-- `quantity`
-- `unit_price`
-- `discount_amount`
-- `promo_id`
-- `promo_id_2`
-
-**Ứng dụng:**
-- Tính doanh thu chi tiết ở mức sản phẩm
-- Phân tích mức giảm giá
-- Đánh giá mức độ sử dụng khuyến mãi
-- Xác định cấu trúc giỏ hàng
-
-**Nhận xét dữ liệu:**
-- `promo_id` có nhiều giá trị null, nghĩa là nhiều dòng không áp dụng khuyến mãi
-- `promo_id_2` gần như trống hoàn toàn, cho thấy promo chồng rất hiếm
-
----
-
-### 3.6 `payments.csv`
-**Vai trò:** Ghi nhận thanh toán theo từng đơn hàng.
-
-**Các cột chính:**
-- `order_id`
-- `payment_method`
-- `payment_value`
-- `installments`
-
-**Ứng dụng:**
-- Phân tích giá trị thanh toán theo phương thức thanh toán
-- So sánh giá trị đơn hàng theo số kỳ trả góp
-- Trả lời các câu hỏi về installment plan
-
-**Nhận xét:**
-- Số dòng trùng với `orders.csv`
-- Quan hệ gần như 1:1 với `orders`
-
----
-
-### 3.7 `shipments.csv`
-**Vai trò:** Thông tin giao hàng của đơn hàng.
-
-**Các cột chính:**
-- `order_id`
-- `ship_date`
-- `delivery_date`
-- `shipping_fee`
-
-**Ứng dụng:**
-- Tính thời gian xử lý và giao hàng
-- Phân tích chi phí vận chuyển
-- So sánh trải nghiệm giao hàng theo vùng hoặc trạng thái đơn hàng
-
-**Nhận xét:**
-- Không phải mọi đơn đều có shipment record, điều này là hợp lý với đơn bị hủy hoặc chưa giao
-
----
-
-### 3.8 `returns.csv`
-**Vai trò:** Ghi nhận các sản phẩm bị trả lại.
-
-**Các cột chính:**
-- `return_id`
-- `order_id`
-- `product_id`
-- `return_date`
-- `return_reason`
-- `return_quantity`
-- `refund_amount`
-
-**Ứng dụng:**
-- Tính return rate theo sản phẩm, category, size
-- Phân tích lý do trả hàng phổ biến
-- Ước tính chi phí refund
-- Hỗ trợ insight về chất lượng sản phẩm và trải nghiệm mua hàng
-
----
-
-### 3.9 `reviews.csv`
-**Vai trò:** Dữ liệu đánh giá sản phẩm sau mua.
-
-**Các cột chính:**
-- `review_id`
-- `order_id`
-- `product_id`
-- `customer_id`
-- `review_date`
-- `rating`
-- `review_title`
-
-**Ứng dụng:**
-- Phân tích mức độ hài lòng của khách hàng
-- So sánh rating với return, shipping, category
-- Xác định nhóm sản phẩm có feedback thấp
-
----
-
-### 3.10 `promotions.csv`
-**Vai trò:** Danh sách các chương trình khuyến mãi.
-
-**Các cột chính:**
-- `promo_id`
-- `promo_name`
-- `promo_type`
-- `discount_value`
-- `start_date`
-- `end_date`
-- `applicable_category`
-- `promo_channel`
-- `stackable_flag`
-- `min_order_value`
-
-**Ứng dụng:**
-- Phân tích hiệu quả của chiến dịch khuyến mãi
-- So sánh các loại discount
-- Kết hợp với `order_items` để đo mức sử dụng promo
-
-**Nhận xét:**
-- Số lượng promo ít, phù hợp để làm phân tích campaign theo thời gian
-
----
-
-### 3.11 `inventory.csv`
-**Vai trò:** Ảnh chụp tồn kho theo tháng và theo sản phẩm.
-
-**Các cột chính:**
-- `snapshot_date`
-- `product_id`
-- `stock_on_hand`
-- `units_received`
-- `units_sold`
-- `stockout_days`
-- `days_of_supply`
-- `fill_rate`
-- `stockout_flag`
-- `overstock_flag`
-- `reorder_flag`
-- `sell_through_rate`
-- `product_name`
-- `category`
-- `segment`
-- `year`
-- `month`
-
-**Ứng dụng:**
-- Phân tích tình trạng stockout và overstock
-- Đánh giá hiệu quả vận hành tồn kho
-- Tìm insight prescriptive về nhập hàng, tái đặt hàng, phân bổ hàng
-
-**Nhận xét:**
-- Đây là bảng rất giá trị cho EDA cấp business
-
----
-
-### 3.12 `web_traffic.csv`
-**Vai trò:** Ghi nhận lưu lượng truy cập website theo ngày.
-
-**Các cột chính:**
-- `date`
-- `sessions`
-- `unique_visitors`
-- `page_views`
-- `bounce_rate`
-- `avg_session_duration_sec`
-- `traffic_source`
-
-**Ứng dụng:**
-- Phân tích hiệu quả kênh traffic
-- So sánh chất lượng traffic giữa các nguồn
-- Dùng làm feature ngoại sinh cho forecasting
-- Kết hợp với `sales` để xem traffic ảnh hưởng đến doanh thu thế nào
-
----
-
-### 3.13 `sales.csv`
-**Vai trò:** Dữ liệu doanh thu theo ngày, là tập train cho bài toán forecasting.
-
-**Các cột chính:**
-- `Date`
-- `Revenue`
-- `COGS`
-
-**Ứng dụng:**
-- Là target time series chính để dự báo `Revenue`
-- Phân tích xu hướng, mùa vụ, biến động doanh thu
-- Có thể kết hợp với các bảng khác để tạo feature tổng hợp
-
-**Nhận xét:**
-- Đây là bảng chính cho phần forecasting
-
----
-
-### 3.14 `sample_submission.csv`
-**Vai trò:** File mẫu để nộp bài.
-
-**Các cột chính:**
-- `Date`
-- `Revenue`
-- `COGS`
-
-**Ứng dụng:**
-- Dùng để đảm bảo đúng cấu trúc và thứ tự file nộp
-- Làm mẫu để tạo `submission.csv`
-
-**Lưu ý:**
-- Chỉ nên dùng như file định dạng nộp bài, không xem là ground truth
-
----
-
-## 4. Quan hệ giữa các bảng
-
-## Quan hệ giữa các bảng
-
-| **Quan hệ** | **Cardinality** |
-|---|---|
-| `orders` ↔ `payments` | 1 : 1 |
-| `orders` ↔ `shipments` | 1 : 0 hoặc 1 |
-| `orders` ↔ `returns` | 1 : 0 hoặc nhiều |
-| `orders` ↔ `reviews` | 1 : 0 hoặc nhiều (~20% đơn `delivered`) |
-| `order_items` ↔ `promotions` | nhiều : 0 hoặc 1 |
-| `products` ↔ `inventory` | 1 : nhiều (1 dòng / sản phẩm / tháng) |
-
----
-
-## 5. Đánh giá chất lượng dữ liệu sơ bộ
-
-### Điểm mạnh
-- Cấu trúc bảng rõ ràng, có thể join logic giữa các bảng
-- Dữ liệu transaction khá đầy đủ
-- `payments` gần như khớp hoàn chỉnh với `orders`
-- `sales` và `web_traffic` phù hợp cho phân tích chuỗi thời gian
-
-### Điểm cần chú ý
-- `promo_id` có nhiều giá trị null
-- `promo_id_2` gần như trống hoàn toàn
-- `shipments` không xuất hiện cho mọi order
-- Cần phân biệt rõ join inner/left tùy mục tiêu phân tích
-
----
-
-## 6. Bảng nào dùng cho việc gì
-
-### 6.1 Phục vụ MCQ
-Các bảng quan trọng nhất cho phần trắc nghiệm:
-- `orders.csv`
-- `order_items.csv`
-- `products.csv`
-- `returns.csv`
-- `payments.csv`
-- `customers.csv`
-- `geography.csv`
-- `web_traffic.csv`
-
-### 6.2 Phục vụ EDA
-Các bảng mạnh nhất cho trực quan hóa và insight:
-- `orders.csv`
-- `order_items.csv`
-- `products.csv`
-- `returns.csv`
-- `reviews.csv`
-- `inventory.csv`
-- `web_traffic.csv`
-- `customers.csv`
-- `geography.csv`
-
-### 6.3 Phục vụ Forecasting
-Các bảng hữu ích để tạo feature:
-- `sales.csv`
-- `web_traffic.csv`
-- `promotions.csv`
-- `orders.csv`
-- `order_items.csv`
-- `inventory.csv`
-- `returns.csv`
-- `reviews.csv`
-- `payments.csv`
-- `shipments.csv`
-
----
-
-## 7. Ý nghĩa business của bộ dữ liệu
-
-Dataset này cho phép phân tích nhiều góc nhìn kinh doanh như:
-
-- Khách hàng nào có xu hướng mua lại nhiều hơn
-- Kênh traffic nào mang lại chất lượng truy cập tốt nhất
-- Nhóm sản phẩm nào có biên lợi nhuận cao
-- Khuyến mãi có thực sự kéo doanh thu hay không
-- Size hoặc category nào có tỷ lệ trả hàng cao
-- Khu vực nào tạo ra doanh thu lớn nhất
-- Tình trạng stockout ảnh hưởng thế nào đến bán hàng
-- Review thấp có liên quan đến return hoặc giao hàng chậm hay không
-
----
-
-## 8. Kết luận
-
-Bộ dữ liệu DATATHON 2026 là một dataset thương mại điện tử khá đầy đủ, có thể dùng để:
-
-- Trả lời câu hỏi trắc nghiệm từ dữ liệu
-- Xây dựng các phân tích EDA có chiều sâu
-- Tạo mô hình dự báo doanh thu theo thời gian
-- Giải thích kết quả mô hình bằng góc nhìn business
-
-Ba trục dữ liệu chính của bộ này là:
-
-1. **Giao dịch bán hàng**: `orders`, `order_items`, `payments`, `shipments`, `returns`, `reviews`
-2. **Thông tin nền**: `products`, `customers`, `geography`, `promotions`
-3. **Chuỗi thời gian vận hành**: `sales`, `web_traffic`, `inventory`
+| customers | 121,930 | 7 | `signup_date` |
+| geography | 39,948 | 4 | - |
+| inventory | 60,247 | 17 | `snapshot_date` |
+| order_items | 714,669 | 7 | - |
+| orders | 646,945 | 8 | `order_date` |
+| payments | 646,945 | 4 | - |
+| products | 2,412 | 8 | - |
+| promotions | 50 | 10 | `start_date`, `end_date` |
+| returns | 39,939 | 7 | `return_date` |
+| reviews | 113,551 | 7 | `review_date` |
+| sales | 3,833 | 3 | `Date` |
+| sample_submission | 548 | 3 | `Date` |
+| shipments | 566,067 | 4 | `ship_date`, `delivery_date` |
+| submission | 548 | 3 | `Date` |
+| web_traffic | 3,652 | 7 | `date` |
+
+Nhận xét nhanh:
+
+- Dữ liệu có cả bảng giao dịch, bảng tham chiếu và bảng chuỗi thời gian.
+- Có **11 bảng** chứa cột ngày, đủ để làm EDA theo thời gian và tạo feature cho forecasting.
+- `sales` và `web_traffic` là hai bảng chuỗi thời gian rõ ràng nhất.
+
+## 3. Khóa chính và liên kết bảng
+
+Notebook audit nhận diện được **13 cột có thể xem là candidate primary key** dựa trên tính duy nhất tuyệt đối.
+
+Những quan hệ được kiểm tra trong audit gồm các cặp chính sau:
+
+- `customers.zip -> geography.zip`
+- `orders.customer_id -> customers.customer_id`
+- `orders.zip -> geography.zip`
+- `order_items.order_id -> orders.order_id`
+- `order_items.product_id -> products.product_id`
+- `order_items.promo_id -> promotions.promo_id`
+- `order_items.promo_id_2 -> promotions.promo_id`
+- `payments.order_id -> orders.order_id`
+- `shipments.order_id -> orders.order_id`
+- `returns.order_id -> orders.order_id`
+- `returns.product_id -> products.product_id`
+- `reviews.order_id -> orders.order_id`
+- `reviews.product_id -> products.product_id`
+- `reviews.customer_id -> customers.customer_id`
+- `inventory.product_id -> products.product_id`
+
+Kết quả audit:
+
+- Phát hiện **0 quan hệ khóa ngoại có mismatch**.
+- Cấu trúc join giữa các bảng nhìn chung nhất quán và dùng được cho phân tích.
+- `orders`, `order_items`, `products`, `customers` và `geography` là cụm bảng trung tâm để join.
+
+## 4. Missing values và độ đầy đủ
+
+Theo kết quả tổng hợp trong notebook:
+
+- Có giá trị thiếu trong **2 bảng**.
+- Không có dấu hiệu vỡ join nghiêm trọng ở các quan hệ khóa ngoại đã kiểm tra.
+- Cần chú ý missing values theo từng cột khi đi vào EDA chi tiết, nhưng ở mức audit tổng quan thì dataset vẫn khá sạch.
+
+## 5. Khoảng thời gian và khả năng forecasting
+
+Audit cho thấy dataset có đầy đủ thành phần để phân tích theo thời gian:
+
+- `sales`: mục tiêu doanh thu theo ngày, phù hợp nhất cho bài toán forecasting.
+- `web_traffic`: biến giải thích theo ngày, hữu ích để tạo feature ngoại sinh.
+- `inventory`: dữ liệu snapshot theo tháng, hỗ trợ góc nhìn vận hành.
+- `orders`, `returns`, `reviews`, `shipments`, `promotions`: đều có mốc thời gian có thể tổng hợp thành feature.
+
+Kết luận thực dụng:
+
+- Nếu làm forecasting doanh thu, nên xem `sales` là target chính.
+- `web_traffic`, `orders`, `order_items`, `inventory`, `returns`, `shipments` và `promotions` là nhóm bảng bổ trợ mạnh để tạo feature.
+
+## 6. Vai trò các nhóm bảng
+
+Rút gọn theo góc nhìn audit:
+
+- Bảng giao dịch: `orders`, `order_items`, `payments`, `returns`, `reviews`, `shipments`
+- Bảng tham chiếu: `customers`, `products`, `geography`, `promotions`
+- Bảng chuỗi thời gian / vận hành: `sales`, `web_traffic`, `inventory`
+- Bảng phục vụ nộp bài: `sample_submission`, `submission`
+
+## 7. Kết luận
+
+Dữ liệu có cấu trúc khá rõ ràng và sẵn sàng cho các bước tiếp theo:
+
+- Load ổn định vào `dfs`
+- Join được giữa các bảng chính mà không thấy mismatch khóa ngoại
+- Có đủ cột ngày để làm time-based EDA
+- Có đủ thành phần để xây dựng bài toán forecasting, trong đó `sales` là bảng target rõ nhất
+
+Vì vậy, `Initial_data_audit.ipynb` cho thấy bộ dữ liệu này phù hợp để:
+
+- kiểm tra chất lượng dữ liệu ban đầu
+- xây dựng join map và business questions
+- chuẩn bị feature cho dự báo doanh thu
