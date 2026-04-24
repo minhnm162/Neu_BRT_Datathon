@@ -1,0 +1,11 @@
+segment_group,return_reason,return_count,refund_amount
+Other,wrong_size,6341,36333441.85
+Other,defective,3690,21062250.27
+Other,not_as_described,3181,18228284.87
+Other,changed_mind,3101,17884747.02
+Other,late_delivery,1827,10381533.41
+Streetwear,wrong_size,7626,140353758.9
+Streetwear,defective,4330,82536892.99
+Streetwear,not_as_described,3854,72424905.91
+Streetwear,changed_mind,3830,71837011.98
+Streetwear,late_delivery,2159,39555679.35

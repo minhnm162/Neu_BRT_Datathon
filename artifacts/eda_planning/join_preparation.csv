@@ -1,0 +1,9 @@
+theme,join_instruction
+Theme 1,"Join order_items to orders on order_id, then enrich with products on product_id."
+Theme 1,Use sales as the authoritative daily target table for revenue and COGS.
+Theme 2,Join orders to customers on customer_id and geography on zip.
+Theme 2,Aggregate web_traffic by date and traffic_source before channel comparison.
+Theme 3,Join returns to order_items and products on order_id + product_id to recover size and segment.
+Theme 3,Join reviews and shipments on order_id to compute delay-rating relationships.
+Theme 4,Use inventory snapshot_date monthly aggregates and enrich with products when needed.
+Theme 4,Estimate lost revenue by combining inventory stockout exposure with realized category revenue.

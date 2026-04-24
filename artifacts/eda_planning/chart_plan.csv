@@ -1,0 +1,17 @@
+theme,chart_name,chart_type,grain,output_file
+Theme 1,Monthly revenue trend,line,month,charts/theme1_monthly_revenue.png
+Theme 1,Revenue seasonality matrix,heatmap,month x year,charts/theme1_revenue_seasonality.png
+Theme 1,Quarterly category contribution,stacked bar,quarter x category,charts/theme1_category_contribution.png
+Theme 1,Top segments by net revenue,bar,segment,charts/theme1_segment_net_revenue.png
+Theme 2,Bounce rate by traffic source,bar,traffic_source,charts/theme2_bounce_rate_by_source.png
+Theme 2,Sessions vs orders by source,scatter,traffic_source,charts/theme2_sessions_vs_orders.png
+Theme 2,Order count by device type,bar,device_type,charts/theme2_orders_by_device.png
+Theme 2,Revenue by region,bar,region,charts/theme2_revenue_by_region.png
+Theme 3,Return rate by size and category,heatmap,size x category,charts/theme3_return_rate_heatmap.png
+Theme 3,Return reasons for Streetwear vs other segments,bar,return_reason,charts/theme3_return_reasons.png
+Theme 3,Shipping delay vs review rating,scatter,order,charts/theme3_delay_vs_rating.png
+Theme 3,Review rating by category,box,category,charts/theme3_rating_by_category.png
+Theme 4,Stockout days by category,bar,category,charts/theme4_stockout_days.png
+Theme 4,Fill rate by category and month,heatmap,category x month,charts/theme4_fill_rate_heatmap.png
+Theme 4,Sell-through rate by category,bar,category,charts/theme4_sell_through.png
+Theme 4,Estimated lost revenue by category,bar,category,charts/theme4_lost_revenue.png

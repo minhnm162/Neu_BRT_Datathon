@@ -1,0 +1,11 @@
+Question,Prompt,Answer,Value
+Q1,What is the typical inter-order gap by customer?,TBD,144.0
+Q2,Which segment has the highest gross margin percentage?,TBD,Trendy (0.1547)
+Q3,What is the most common return reason for Streetwear?,TBD,wrong_size
+Q4,Which traffic source has the lowest average bounce rate?,TBD,email_campaign (0.0045)
+Q5,What share of order-item rows use at least one promotion?,TBD,0.3866
+Q6,Which age group has the highest average order count per customer?,TBD,55+ (7.2687)
+Q7,Which region generates the highest estimated revenue?,TBD,East (7291150819.12)
+Q8,Which payment method is most common among cancelled orders?,TBD,credit_card
+Q9,Which size has the highest return rate?,TBD,S (0.0565)
+Q10,Which installment count has the highest average payment value?,TBD,6 installments (24446.65)

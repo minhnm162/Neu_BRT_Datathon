@@ -1,0 +1,7 @@
+insight,tier,priority
+Revenue seasonality peaks in Q4,Descriptive,1
+A traffic source has high sessions but weak conversion efficiency,Diagnostic,2
+Specific sizes or segments carry outsized return rates,Diagnostic,2
+Stockouts suppress potential category revenue,Diagnostic,3
+Lower shipping delay is associated with higher customer ratings,Predictive,4
+Budget reallocation toward efficient channels can improve ROI,Prescriptive,5

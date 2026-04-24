@@ -1,0 +1,14 @@
+table,mcq,eda,forecasting
+orders,True,True,True
+order_items,True,True,True
+products,True,True,False
+customers,True,True,False
+geography,True,True,False
+returns,True,True,True
+reviews,False,True,True
+shipments,False,True,True
+inventory,False,True,True
+web_traffic,True,True,True
+promotions,True,True,True
+sales,False,True,True
+payments,True,False,False

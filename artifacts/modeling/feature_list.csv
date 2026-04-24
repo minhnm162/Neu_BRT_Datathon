@@ -1,0 +1,47 @@
+feature,group,description
+sessions,web_traffic,Auto-generated feature for sessions.
+unique_visitors,web_traffic,Auto-generated feature for unique visitors.
+page_views,web_traffic,Auto-generated feature for page views.
+bounce_rate,web_traffic,Auto-generated feature for bounce rate.
+avg_session_duration_sec,web_traffic,Auto-generated feature for avg session duration sec.
+daily_order_count,daily_aggregate,Auto-generated feature for daily order count.
+daily_qty_sold,daily_aggregate,Auto-generated feature for daily qty sold.
+daily_line_revenue,daily_aggregate,Auto-generated feature for daily line revenue.
+daily_active_promos,daily_aggregate,Auto-generated feature for daily active promos.
+avg_discount_value,daily_aggregate,Auto-generated feature for avg discount value.
+daily_returns,daily_aggregate,Auto-generated feature for daily returns.
+daily_refund_amount,daily_aggregate,Auto-generated feature for daily refund amount.
+daily_avg_rating,daily_aggregate,Auto-generated feature for daily avg rating.
+daily_avg_delay,daily_aggregate,Auto-generated feature for daily avg delay.
+monthly_fill_rate,monthly_operational,Auto-generated feature for monthly fill rate.
+monthly_stockout_days,monthly_operational,Auto-generated feature for monthly stockout days.
+monthly_sell_through_rate,monthly_operational,Auto-generated feature for monthly sell through rate.
+dayofweek,time_based,Auto-generated feature for dayofweek.
+month,time_based,Auto-generated feature for month.
+quarter,time_based,Auto-generated feature for quarter.
+year,time_based,Auto-generated feature for year.
+dayofmonth,time_based,Auto-generated feature for dayofmonth.
+weekofyear,time_based,Auto-generated feature for weekofyear.
+is_weekend,time_based,Auto-generated feature for is weekend.
+is_month_end,time_based,Auto-generated feature for is month end.
+time_index,time_based,Auto-generated feature for time index.
+revenue_lag_1,lag,Auto-generated feature for revenue lag 1.
+revenue_lag_7,lag,Auto-generated feature for revenue lag 7.
+revenue_lag_14,lag,Auto-generated feature for revenue lag 14.
+revenue_lag_28,lag,Auto-generated feature for revenue lag 28.
+revenue_roll_mean_7,rolling,Auto-generated feature for revenue roll mean 7.
+revenue_roll_std_7,rolling,Auto-generated feature for revenue roll std 7.
+revenue_roll_mean_14,rolling,Auto-generated feature for revenue roll mean 14.
+revenue_roll_std_14,rolling,Auto-generated feature for revenue roll std 14.
+revenue_roll_mean_30,rolling,Auto-generated feature for revenue roll mean 30.
+revenue_roll_std_30,rolling,Auto-generated feature for revenue roll std 30.
+cogs_lag_1,lag,Auto-generated feature for cogs lag 1.
+cogs_lag_7,lag,Auto-generated feature for cogs lag 7.
+cogs_lag_14,lag,Auto-generated feature for cogs lag 14.
+cogs_lag_28,lag,Auto-generated feature for cogs lag 28.
+cogs_roll_mean_7,rolling,Auto-generated feature for cogs roll mean 7.
+cogs_roll_std_7,rolling,Auto-generated feature for cogs roll std 7.
+cogs_roll_mean_14,rolling,Auto-generated feature for cogs roll mean 14.
+cogs_roll_std_14,rolling,Auto-generated feature for cogs roll std 14.
+cogs_roll_mean_30,rolling,Auto-generated feature for cogs roll mean 30.
+cogs_roll_std_30,rolling,Auto-generated feature for cogs roll std 30.

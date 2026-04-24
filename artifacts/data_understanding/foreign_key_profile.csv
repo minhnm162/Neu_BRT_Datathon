@@ -1,0 +1,13 @@
+left_table,left_key,right_table,right_key,checked_rows,non_null_left_rows,unmatched_rows,match_rate_pct,relationship,note
+orders,order_id,order_items,order_id,646945.0,646945.0,0.0,100.0,1:N,All non-null keys matched.
+orders,order_id,shipments,order_id,646945.0,646945.0,80878.0,87.5,1:1 with orphan rows,"Found 80,878 orphan rows."
+orders,order_id,payments,order_id,646945.0,646945.0,0.0,100.0,1:1,All non-null keys matched.
+orders,order_id,reviews,order_id,646945.0,646945.0,535576.0,17.21,1:N with orphan rows,"Found 535,576 orphan rows."
+order_items,product_id,products,product_id,714669.0,714669.0,0.0,100.0,N:1,All non-null keys matched.
+order_items,product_id,inventory,product_id,714669.0,714669.0,0.0,100.0,N:N,All non-null keys matched.
+order_items,promo_id,promotions,promo_id,714669.0,276316.0,0.0,100.0,N:1,All non-null keys matched.
+orders,order_id,returns,order_id,646945.0,646945.0,610883.0,5.57,1:N with orphan rows,"Found 610,883 orphan rows."
+customers,geography_id,geography,geography_id,,,,,not_checked,Missing table or column.
+orders,customer_id,customers,customer_id,646945.0,646945.0,0.0,100.0,N:1,All non-null keys matched.
+customers,zip,geography,zip,121930.0,121930.0,0.0,100.0,N:1,All non-null keys matched.
+sales,Date,web_traffic,date,3833.0,3833.0,181.0,95.28,1:1 with orphan rows,Found 181 orphan rows.

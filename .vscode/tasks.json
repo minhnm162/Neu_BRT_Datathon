@@ -1,0 +1,110 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Workflow: Data Understanding",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "src.competition_workflow",
+        "data-understanding",
+        "--project-root",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Workflow: MCQ Artifacts",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "src.competition_workflow",
+        "mcq",
+        "--project-root",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Workflow: EDA Plan",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "src.competition_workflow",
+        "eda-plan",
+        "--project-root",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Workflow: EDA Aggregates",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "src.competition_workflow",
+        "eda",
+        "--project-root",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Workflow: Baseline Forecast",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "src.competition_workflow",
+        "baseline",
+        "--project-root",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Workflow: Feature Dataset",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "src.competition_workflow",
+        "features",
+        "--project-root",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Workflow: Model Comparison",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "src.competition_workflow",
+        "model-compare",
+        "--project-root",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Workflow: Prep Pipeline",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Workflow: Data Understanding",
+        "Workflow: MCQ Artifacts",
+        "Workflow: EDA Plan",
+        "Workflow: EDA Aggregates",
+        "Workflow: Baseline Forecast",
+        "Workflow: Feature Dataset",
+        "Workflow: Model Comparison"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

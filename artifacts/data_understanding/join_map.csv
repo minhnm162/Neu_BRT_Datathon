@@ -1,0 +1,12 @@
+source_table,join_key,related_table,note
+orders,order_id,order_items,1:N
+orders,order_id,shipments,1:N
+orders,order_id,payments,1:N
+orders,order_id,reviews,1:N
+orders,customer_id,customers,N:1
+order_items,product_id,products,N:1
+order_items,product_id,inventory,N:1
+order_items,promo_id,promotions,"N:1, nullable"
+orders,order_id,returns,1:1 or null
+customers,geography_id,geography,N:1
+sales,Date,web_traffic,Temporal join by date
