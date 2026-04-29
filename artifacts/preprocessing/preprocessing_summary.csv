@@ -1,0 +1,19 @@
+phase,step,status,output_or_location,competition_note
+data_understanding,Load raw CSV tables and parse date columns,Done,artifacts/data_understanding/load_summary.csv,No raw competition dataset files are modified.
+data_understanding,Profile shape columns and sample rows,Done,artifacts/data_understanding/dataset_summary.csv,Confirms table structure before any transformation.
+data_understanding,Check primary keys and foreign keys,Done,artifacts/data_understanding/primary_key_profile.csv; artifacts/data_understanding/foreign_key_profile.csv,Prevents invalid joins and duplicated analytical grain.
+cleaning,Profile missing values with business meaning,Done,artifacts/data_understanding/missing_values.csv,Promo nulls are business-valid and should not be blanket-filled.
+cleaning,Keep raw dataset unchanged,Done,dataset/,All processing outputs are written outside dataset/.
+preprocessing,Build explicit join map and table usage map,Done,artifacts/data_understanding/join_map.csv; artifacts/data_understanding/table_usage.csv,Separates MCQ EDA and forecasting use cases.
+preprocessing,Create analysis-ready intermediate tables,Done,aggregated_tables/table_grain_map.csv,Each output has a documented grain.
+preprocessing,Create order line enriched table for MCQ and EDA,Done,aggregated_tables/order_lines_enriched.csv,One row per order item line.
+preprocessing,Create returns enriched table for EDA,Done,aggregated_tables/returns_enriched.csv,One row per return record.
+preprocessing,Create inventory monthly table for operations EDA,Done,aggregated_tables/inventory_monthly_enriched.csv,"One row per month, category, segment."
+forecasting_feature_engineering,Create daily forecasting feature grain,Done,aggregated_tables/daily_sales_features_final_grain.csv,One row per date matching sales/sample_submission grain.
+forecasting_feature_engineering,Create calendar lag rolling and EWM features,Done,artifacts/final_submission/final_feature_list.csv,Sales-derived features use past values only.
+forecasting_feature_engineering,Use promotion calendar features only when provided,Done,artifacts/final_submission/final_feature_list.csv,Allowed if campaign calendar is known from supplied data.
+model_preprocessing,Use model-pipeline imputation for numeric features,Done,06_forecasting_feature_engineering.ipynb; 07_model_interpretation_and_final_submission.ipynb,Median imputation is inside sklearn pipelines.
+model_preprocessing,Scale only linear model candidates,Done,06_forecasting_feature_engineering.ipynb,Tree/XGBoost candidates do not need scaling.
+leakage_control,Ignore sample_submission Revenue and COGS values,Done,artifacts/final_submission/final_pipeline_config.json,Only Date/order/schema are used from sample_submission.
+leakage_control,Run recursive walk-forward validation,Done,artifacts/final_submission/recursive_backtest_2022_scores.csv,Mimics future submission behavior better than one-step validation.
+submission_validation,Check row count column order date order missing values and non-negative predictions,Done,artifacts/final_submission/submission_checks.csv,Submission file is structurally valid.

@@ -1,0 +1,2 @@
+"selected_baseline","selection_metric","validation_start","validation_end","MAE","RMSE","R2"
+"linear_time_features","lowest validation RMSE",2022-01-01,2022-12-31,1016413.16964699,1416690.2308076,0.283629772333769

@@ -1,0 +1,11 @@
+section,target_or_scope,model_or_item,validation_mode,MAE,RMSE,R2,note
+best_baseline,Revenue,linear_time_features,one_step_validation,1016413.17,1416690.23,0.2836,Best baseline from notebook 05.
+feature_engineering,Revenue,xgboost,one_step_validation,563079.86,781608.61,0.7819,Best model family from notebook 06.
+feature_engineering,Revenue,ridge,one_step_validation,609092.97,810857.84,0.7653,Linear regularized candidate.
+feature_engineering,Revenue,linear_regression,one_step_validation,632168.67,831720.32,0.7531,Simple linear candidate.
+feature_engineering,Revenue,random_forest,one_step_validation,593005.66,846196.97,0.7444,Tree ensemble candidate.
+final_model,Revenue,xgboost,teacher_forcing_one_step,551477.76,756691.33,0.7956,Final validation using observed validation lags.
+final_model,COGS,xgboost,teacher_forcing_one_step,479392.75,652305.97,0.8000,Final validation using observed validation lags.
+recursive_backtest,Revenue,xgboost,recursive_walk_forward,630097.80,863343.40,0.7340,More realistic future-style validation.
+recursive_backtest,COGS,xgboost,recursive_walk_forward,556872.72,740159.85,0.7425,More realistic future-style validation.
+improvement,Revenue,xgboost_vs_best_baseline,one_step_validation,,,,"RMSE improves by about 44.83%; MAE improves by about 44.60%."

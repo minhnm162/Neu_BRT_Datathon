@@ -1,0 +1,2 @@
+﻿best_candidate_for_notebook_07,selection_metric,validation_start,validation_end,MAE,RMSE,R2,modeling_grain,leakage_note
+xgboost,lowest validation RMSE,2022-01-01,2022-12-31,563079.8581301369,781608.612500297,0.7819448227782064,one row per date,Sales-derived features are shifted; operational aggregates are lagged/rolling past-only; no external data or test Revenue/COGS used.

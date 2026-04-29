@@ -1,0 +1,132 @@
+﻿feature,source,missing_count,dtype,used_in_model
+day_of_week,calendar from Date,0,int32,True
+day_of_month,calendar from Date,0,int32,True
+day_of_year,calendar from Date,0,int32,True
+week_of_year,calendar from Date,0,int64,True
+month,calendar from Date,0,int32,True
+quarter,calendar from Date,0,int32,True
+year,calendar from Date,0,int32,True
+is_weekend,calendar from Date,0,int64,True
+time_index,calendar from Date,0,int64,True
+revenue_lag_1,sales.csv lag/rolling past-only,1,float64,True
+cogs_lag_1,sales.csv lag/rolling past-only,1,float64,True
+revenue_lag_7,sales.csv lag/rolling past-only,7,float64,True
+cogs_lag_7,sales.csv lag/rolling past-only,7,float64,True
+revenue_lag_14,sales.csv lag/rolling past-only,14,float64,True
+cogs_lag_14,sales.csv lag/rolling past-only,14,float64,True
+revenue_lag_28,sales.csv lag/rolling past-only,28,float64,True
+cogs_lag_28,sales.csv lag/rolling past-only,28,float64,True
+revenue_lag_30,sales.csv lag/rolling past-only,30,float64,True
+cogs_lag_30,sales.csv lag/rolling past-only,30,float64,True
+revenue_lag_60,sales.csv lag/rolling past-only,60,float64,True
+cogs_lag_60,sales.csv lag/rolling past-only,60,float64,True
+revenue_lag_90,sales.csv lag/rolling past-only,90,float64,True
+cogs_lag_90,sales.csv lag/rolling past-only,90,float64,True
+revenue_lag_365,sales.csv lag/rolling past-only,365,float64,True
+cogs_lag_365,sales.csv lag/rolling past-only,365,float64,True
+revenue_roll_mean_7,sales.csv lag/rolling past-only,2,float64,True
+revenue_roll_std_7,sales.csv lag/rolling past-only,2,float64,True
+cogs_roll_mean_7,sales.csv lag/rolling past-only,2,float64,True
+revenue_roll_mean_14,sales.csv lag/rolling past-only,4,float64,True
+revenue_roll_std_14,sales.csv lag/rolling past-only,4,float64,True
+cogs_roll_mean_14,sales.csv lag/rolling past-only,4,float64,True
+revenue_roll_mean_28,sales.csv lag/rolling past-only,9,float64,True
+revenue_roll_std_28,sales.csv lag/rolling past-only,9,float64,True
+cogs_roll_mean_28,sales.csv lag/rolling past-only,9,float64,True
+revenue_roll_mean_30,sales.csv lag/rolling past-only,10,float64,True
+revenue_roll_std_30,sales.csv lag/rolling past-only,10,float64,True
+cogs_roll_mean_30,sales.csv lag/rolling past-only,10,float64,True
+revenue_roll_mean_60,sales.csv lag/rolling past-only,20,float64,True
+revenue_roll_std_60,sales.csv lag/rolling past-only,20,float64,True
+cogs_roll_mean_60,sales.csv lag/rolling past-only,20,float64,True
+revenue_roll_mean_90,sales.csv lag/rolling past-only,30,float64,True
+revenue_roll_std_90,sales.csv lag/rolling past-only,30,float64,True
+cogs_roll_mean_90,sales.csv lag/rolling past-only,30,float64,True
+revenue_ewm_7,sales.csv lag/rolling past-only,1,float64,True
+revenue_ewm_30,sales.csv lag/rolling past-only,1,float64,True
+active_campaigns_lag_1,lagged/rolling past-only operational feature from active_campaigns,1,float64,True
+active_campaigns_roll_mean_7,lagged/rolling past-only operational feature from active_campaigns,2,float64,True
+active_promo_categories_lag_1,lagged/rolling past-only operational feature from active_promo_categories,1,float64,True
+active_promo_categories_roll_mean_7,lagged/rolling past-only operational feature from active_promo_categories,2,float64,True
+active_promo_channels_lag_1,lagged/rolling past-only operational feature from active_promo_channels,1,float64,True
+active_promo_channels_roll_mean_7,lagged/rolling past-only operational feature from active_promo_channels,2,float64,True
+active_promo_types_lag_1,lagged/rolling past-only operational feature from active_promo_types,1,float64,True
+active_promo_types_roll_mean_7,lagged/rolling past-only operational feature from active_promo_types,2,float64,True
+avg_delivery_delay_days_lag_1,lagged/rolling past-only operational feature from avg_delivery_delay_days,2,float64,True
+avg_delivery_delay_days_roll_mean_7,lagged/rolling past-only operational feature from avg_delivery_delay_days,2,float64,True
+avg_discount_rate_lag_1,lagged/rolling past-only operational feature from avg_discount_rate,1,float64,True
+avg_discount_rate_roll_mean_7,lagged/rolling past-only operational feature from avg_discount_rate,2,float64,True
+avg_installments_lag_1,lagged/rolling past-only operational feature from avg_installments,1,float64,True
+avg_installments_roll_mean_7,lagged/rolling past-only operational feature from avg_installments,2,float64,True
+avg_rating_lag_1,lagged/rolling past-only operational feature from avg_rating,9,float64,True
+avg_rating_roll_mean_7,lagged/rolling past-only operational feature from avg_rating,9,float64,True
+avg_shipping_fee_lag_1,lagged/rolling past-only operational feature from avg_shipping_fee,2,float64,True
+avg_shipping_fee_roll_mean_7,lagged/rolling past-only operational feature from avg_shipping_fee,2,float64,True
+avg_unit_price_lag_1,lagged/rolling past-only operational feature from avg_unit_price,1,float64,True
+avg_unit_price_roll_mean_7,lagged/rolling past-only operational feature from avg_unit_price,2,float64,True
+discount_amount_total_lag_1,lagged/rolling past-only operational feature from discount_amount_total,1,float64,True
+discount_amount_total_roll_mean_7,lagged/rolling past-only operational feature from discount_amount_total,2,float64,True
+inv_days_of_supply_lag_1,lagged/rolling past-only operational feature from inv_days_of_supply,1,float64,True
+inv_days_of_supply_roll_mean_7,lagged/rolling past-only operational feature from inv_days_of_supply,2,float64,True
+inv_fill_rate_lag_1,lagged/rolling past-only operational feature from inv_fill_rate,1,float64,True
+inv_fill_rate_roll_mean_7,lagged/rolling past-only operational feature from inv_fill_rate,2,float64,True
+inv_overstock_flag_share_lag_1,lagged/rolling past-only operational feature from inv_overstock_flag_share,1,float64,True
+inv_overstock_flag_share_roll_mean_7,lagged/rolling past-only operational feature from inv_overstock_flag_share,2,float64,True
+inv_reorder_flag_share_lag_1,lagged/rolling past-only operational feature from inv_reorder_flag_share,1,float64,True
+inv_reorder_flag_share_roll_mean_7,lagged/rolling past-only operational feature from inv_reorder_flag_share,2,float64,True
+inv_sell_through_rate_lag_1,lagged/rolling past-only operational feature from inv_sell_through_rate,1,float64,True
+inv_sell_through_rate_roll_mean_7,lagged/rolling past-only operational feature from inv_sell_through_rate,2,float64,True
+inv_stock_on_hand_lag_1,lagged/rolling past-only operational feature from inv_stock_on_hand,1,float64,True
+inv_stock_on_hand_roll_mean_7,lagged/rolling past-only operational feature from inv_stock_on_hand,2,float64,True
+inv_stockout_days_lag_1,lagged/rolling past-only operational feature from inv_stockout_days,1,float64,True
+inv_stockout_days_roll_mean_7,lagged/rolling past-only operational feature from inv_stockout_days,2,float64,True
+inv_stockout_flag_share_lag_1,lagged/rolling past-only operational feature from inv_stockout_flag_share,1,float64,True
+inv_stockout_flag_share_roll_mean_7,lagged/rolling past-only operational feature from inv_stockout_flag_share,2,float64,True
+inv_units_received_lag_1,lagged/rolling past-only operational feature from inv_units_received,1,float64,True
+inv_units_received_roll_mean_7,lagged/rolling past-only operational feature from inv_units_received,2,float64,True
+inv_units_sold_lag_1,lagged/rolling past-only operational feature from inv_units_sold,1,float64,True
+inv_units_sold_roll_mean_7,lagged/rolling past-only operational feature from inv_units_sold,2,float64,True
+low_rating_share_lag_1,lagged/rolling past-only operational feature from low_rating_share,9,float64,True
+low_rating_share_roll_mean_7,lagged/rolling past-only operational feature from low_rating_share,9,float64,True
+order_count_lag_1,lagged/rolling past-only operational feature from order_count,1,float64,True
+order_count_roll_mean_7,lagged/rolling past-only operational feature from order_count,2,float64,True
+order_item_rows_lag_1,lagged/rolling past-only operational feature from order_item_rows,1,float64,True
+order_item_rows_roll_mean_7,lagged/rolling past-only operational feature from order_item_rows,2,float64,True
+payment_value_total_lag_1,lagged/rolling past-only operational feature from payment_value_total,1,float64,True
+payment_value_total_roll_mean_7,lagged/rolling past-only operational feature from payment_value_total,2,float64,True
+promo_item_share_lag_1,lagged/rolling past-only operational feature from promo_item_share,1,float64,True
+promo_item_share_roll_mean_7,lagged/rolling past-only operational feature from promo_item_share,2,float64,True
+quantity_sold_lag_1,lagged/rolling past-only operational feature from quantity_sold,1,float64,True
+quantity_sold_roll_mean_7,lagged/rolling past-only operational feature from quantity_sold,2,float64,True
+refund_amount_lag_1,lagged/rolling past-only operational feature from refund_amount,1,float64,True
+refund_amount_roll_mean_7,lagged/rolling past-only operational feature from refund_amount,2,float64,True
+return_quantity_lag_1,lagged/rolling past-only operational feature from return_quantity,1,float64,True
+return_quantity_roll_mean_7,lagged/rolling past-only operational feature from return_quantity,2,float64,True
+return_reasons_lag_1,lagged/rolling past-only operational feature from return_reasons,1,float64,True
+return_reasons_roll_mean_7,lagged/rolling past-only operational feature from return_reasons,2,float64,True
+return_records_lag_1,lagged/rolling past-only operational feature from return_records,1,float64,True
+return_records_roll_mean_7,lagged/rolling past-only operational feature from return_records,2,float64,True
+review_count_lag_1,lagged/rolling past-only operational feature from review_count,1,float64,True
+review_count_roll_mean_7,lagged/rolling past-only operational feature from review_count,2,float64,True
+shipped_orders_lag_1,lagged/rolling past-only operational feature from shipped_orders,1,float64,True
+shipped_orders_roll_mean_7,lagged/rolling past-only operational feature from shipped_orders,2,float64,True
+shipping_fee_total_lag_1,lagged/rolling past-only operational feature from shipping_fee_total,1,float64,True
+shipping_fee_total_roll_mean_7,lagged/rolling past-only operational feature from shipping_fee_total,2,float64,True
+unique_categories_sold_lag_1,lagged/rolling past-only operational feature from unique_categories_sold,1,float64,True
+unique_categories_sold_roll_mean_7,lagged/rolling past-only operational feature from unique_categories_sold,2,float64,True
+unique_products_sold_lag_1,lagged/rolling past-only operational feature from unique_products_sold,1,float64,True
+unique_products_sold_roll_mean_7,lagged/rolling past-only operational feature from unique_products_sold,2,float64,True
+web_avg_session_duration_sec_lag_1,lagged/rolling past-only operational feature from web_avg_session_duration_sec,182,float64,True
+web_avg_session_duration_sec_roll_mean_7,lagged/rolling past-only operational feature from web_avg_session_duration_sec,183,float64,True
+web_bounce_rate_lag_1,lagged/rolling past-only operational feature from web_bounce_rate,182,float64,True
+web_bounce_rate_roll_mean_7,lagged/rolling past-only operational feature from web_bounce_rate,183,float64,True
+web_page_views_lag_1,lagged/rolling past-only operational feature from web_page_views,1,float64,True
+web_page_views_roll_mean_7,lagged/rolling past-only operational feature from web_page_views,2,float64,True
+web_page_views_per_session_lag_1,lagged/rolling past-only operational feature from web_page_views_per_session,182,float64,True
+web_page_views_per_session_roll_mean_7,lagged/rolling past-only operational feature from web_page_views_per_session,183,float64,True
+web_sessions_lag_1,lagged/rolling past-only operational feature from web_sessions,1,float64,True
+web_sessions_roll_mean_7,lagged/rolling past-only operational feature from web_sessions,2,float64,True
+web_traffic_sources_lag_1,lagged/rolling past-only operational feature from web_traffic_sources,1,float64,True
+web_traffic_sources_roll_mean_7,lagged/rolling past-only operational feature from web_traffic_sources,2,float64,True
+web_unique_visitors_lag_1,lagged/rolling past-only operational feature from web_unique_visitors,1,float64,True
+web_unique_visitors_roll_mean_7,lagged/rolling past-only operational feature from web_unique_visitors,2,float64,True

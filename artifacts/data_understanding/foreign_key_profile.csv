@@ -1,0 +1,16 @@
+﻿left_table,left_key,right_table,right_key,checked_rows,non_null_left_rows,unmatched_rows,match_rate_pct,relationship,note
+customers,zip,geography,zip,121930,121930,0,100.0,n:1,OK
+orders,customer_id,customers,customer_id,646945,646945,0,100.0,n:1,OK
+orders,zip,geography,zip,646945,646945,0,100.0,n:1,OK
+order_items,order_id,orders,order_id,714669,714669,0,100.0,n:1,OK
+order_items,product_id,products,product_id,714669,714669,0,100.0,n:1,OK
+order_items,promo_id,promotions,promo_id,714669,276316,0,100.0,n:1,OK
+order_items,promo_id_2,promotions,promo_id,714669,206,0,100.0,n:1,OK
+payments,order_id,orders,order_id,646945,646945,0,100.0,1:1,OK
+shipments,order_id,orders,order_id,566067,566067,0,100.0,1:1,OK
+returns,order_id,orders,order_id,39939,39939,0,100.0,n:1,OK
+returns,product_id,products,product_id,39939,39939,0,100.0,n:1,OK
+reviews,order_id,orders,order_id,113551,113551,0,100.0,n:1,OK
+reviews,product_id,products,product_id,113551,113551,0,100.0,n:1,OK
+reviews,customer_id,customers,customer_id,113551,113551,0,100.0,n:1,OK
+inventory,product_id,products,product_id,60247,60247,0,100.0,n:1,OK
