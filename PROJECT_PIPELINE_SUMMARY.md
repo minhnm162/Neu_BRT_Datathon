@@ -524,10 +524,3 @@ Tuy nhiên, phần forecasting vẫn có rủi ro kỹ thuật:
 - recursive forecast dài hạn có thể kém ổn định hơn validation một bước;
 - submission hiện tại đang dùng bản score cũ tốt hơn các thử nghiệm mới.
 
-Vì vậy, nếu mục tiêu là giữ score Kaggle hiện tại, nên tiếp tục dùng `submission.csv` hiện tại. Nếu mục tiêu là cải thiện pipeline về mặt kỹ thuật, bước tiếp theo nên là:
-
-1. Đồng nhất feature set giữa notebook 06 và notebook 07.
-2. Chọn model theo recursive validation thay vì one-step validation.
-3. Giảm phụ thuộc vào `lag_1`, `lag_7` và rolling ngắn.
-4. Chỉ giữ exogenous features có thể biết hoặc mô phỏng đáng tin trong tương lai.
-5. So sánh submission candidate mới với bản cũ trước khi submit.
