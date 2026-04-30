@@ -1,6 +1,0 @@
-
-r_libs/
-aggregated_tables/order_lines_enriched.csv
-aggregated_tables/order_lines_enriched_parts/
-artifacts/candidate_submissions/
-*.tmp

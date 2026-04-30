@@ -1,4 +1,0 @@
-﻿figure,path,use
-revenue_feature_importance_top20.png,artifacts/final_submission/charts/revenue_feature_importance_top20.png,Feature importance for Part 3 report
-revenue_permutation_importance_top20.png,artifacts/final_submission/charts/revenue_permutation_importance_top20.png,Validation-based importance
-revenue_partial_dependence_top_features.png,artifacts/final_submission/charts/revenue_partial_dependence_top_features.png,Partial dependence explanation

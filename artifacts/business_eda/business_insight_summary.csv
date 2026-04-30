@@ -1,7 +1,0 @@
-"insight_id","theme","main_metric","recommendation"
-"I1","Revenue and demand","Peak month revenue and category revenue share","Prioritize high-impact categories before demand peaks."
-"I2","Customer and channel","Revenue, AOV, orders per customer, bounce rate","Allocate channel spend based on revenue quality, AOV, repeat behavior, and traffic quality."
-"I3","Returns and experience","Return rate, return records, refund amount","Improve sizing guidance for high-return size-category groups."
-"I4","Returns and experience","Average rating by delivery delay bucket","Use proactive communication or shipping priority for delay-risk orders."
-"I5","Inventory and operations","Stockout days, fill rate, lost sales proxy","Increase safety stock and earlier reorder triggers for high-demand stockout categories."
-"I6","Inventory and operations","Overstock months and sell-through rate","Rebalance inventory within categories: replenish winners, markdown or pause slow movers."

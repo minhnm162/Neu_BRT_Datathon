@@ -1,4 +1,0 @@
-﻿table,column,missing_count,missing_pct,business_interpretation,recommended_action
-order_items,promo_id_2,714463,99.97,Business-valid null: item has no second/stacked promotion. Use an indicator if needed.,Do not blanket-fill; handle only when required by the target analysis.
-promotions,applicable_category,40,80.0,Likely broad/all-category promotion metadata. Keep null or encode as broad_scope only after checking business question.,Do not blanket-fill; handle only when required by the target analysis.
-order_items,promo_id,438353,61.34,Business-valid null: item has no primary promotion. Do not fill with an arbitrary promo_id.,Do not blanket-fill; handle only when required by the target analysis.

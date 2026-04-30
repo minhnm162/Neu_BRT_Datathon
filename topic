@@ -1,0 +1,205 @@
+# DATATHON 2026 - The Gridbreaker: De bai vong 1 va barem diem
+
+Nguon: `De thi Vong 1.pdf`
+
+## 1. Tong quan de bai
+
+Cuoc thi su dung bo du lieu mo phong hoat dong cua mot doanh nghiep thoi trang thuong mai dien tu tai Viet Nam, trong giai doan 04/07/2012 den 31/12/2022. Du lieu gom cac nhom bang:
+
+- Master: `products.csv`, `customers.csv`, `promotions.csv`, `geography.csv`
+- Transaction: `orders.csv`, `order_items.csv`, `payments.csv`, `shipments.csv`, `returns.csv`, `reviews.csv`
+- Analytical: `sales.csv`, `sample_submission.csv`
+- Operational: `inventory.csv`, `web_traffic.csv`
+
+Phan du bao:
+
+- Train: `sales.csv`, tu 04/07/2012 den 31/12/2022
+- Test an tren Kaggle: tu 01/01/2023 den 01/07/2024
+
+## 2. Phan 1 - Cau hoi trac nghiem
+
+Chon 1 dap an dung nhat cho moi cau. Tat ca cau hoi deu yeu cau tinh toan truc tiep tu du lieu duoc cung cap.
+
+1. Tinh trung vi so ngay giua hai lan mua lien tiep cua nhom khach hang co hon 1 don hang, dua tren `orders.csv`.
+   Dap an lua chon: 30 ngay, 90 ngay, 144 ngay, 365 ngay.
+
+2. Tim `segment` trong `products.csv` co ty suat loi nhuan gop trung binh cao nhat, theo cong thuc `(price - cogs) / price`.
+   Dap an lua chon: Premium, Performance, Activewear, Standard.
+
+3. Join `returns.csv` voi `products.csv` theo `product_id`, loc san pham thuoc danh muc Streetwear, roi tim ly do tra hang xuat hien nhieu nhat.
+   Dap an lua chon: defective, wrong_size, changed_mind, not_as_described.
+
+4. Trong `web_traffic.csv`, tim `traffic_source` co `bounce_rate` trung binh thap nhat.
+   Dap an lua chon: organic_search, paid_search, email_campaign, social_media.
+
+5. Tinh ty le phan tram dong trong `order_items.csv` co ap dung khuyen mai, tuc `promo_id` khong null.
+   Dap an lua chon: 12%, 25%, 39%, 54%.
+
+6. Trong `customers.csv`, voi cac khach hang co `age_group` khong null, tim nhom tuoi co so don hang trung binh tren moi khach hang cao nhat.
+   Dap an lua chon: 55+, 25-34, 35-44, 45-54.
+
+7. Tim vung `region` trong `geography.csv` tao ra tong doanh thu cao nhat trong tap sales train.
+   Dap an lua chon: West, Central, East, ca ba vung co doanh thu xap xi bang nhau.
+
+8. Trong cac don hang co `order_status = cancelled` trong `orders.csv`, tim phuong thuc thanh toan duoc dung nhieu nhat.
+   Dap an lua chon: credit_card, cod, paypal, bank_transfer.
+
+9. Trong cac size S, M, L, XL, tim size co ty le tra hang cao nhat. Ty le = so ban ghi trong `returns.csv` / so dong trong `order_items.csv`, sau khi join voi `products.csv` theo `product_id`.
+   Dap an lua chon: S, M, L, XL.
+
+10. Trong `payments.csv`, tim ke hoach tra gop co gia tri thanh toan trung binh moi don hang cao nhat.
+    Dap an lua chon: 1 ky, 3 ky, 6 ky, 12 ky.
+
+## 3. Phan 2 - Truc quan hoa va phan tich du lieu
+
+Muc tieu: khai pha bo du lieu de tim insight co y nghia kinh doanh. Khong co mot dap an duy nhat; ban giam khao cham theo kha nang data storytelling, chieu sau phan tich va chat luong trinh bay.
+
+Bai nop can co 2 thanh phan:
+
+1. Truc quan hoa:
+   - Tao bieu do, dashboard, ban do hoac cac hinh truc quan the hien pattern, xu huong, moi quan he trong du lieu.
+   - Moi hinh can co tieu de, nhan truc ro rang, chu thich phu hop.
+
+2. Phan tich:
+   - Giai thich bieu do dang the hien dieu gi va vi sao goc nhin do quan trong.
+   - Neu key findings bang so lieu cu the.
+   - Neu business implications hoac actionable recommendations.
+
+Bon cap do phan tich duoc danh gia:
+
+- Descriptive: What happened? Thong ke tong hop dung, bieu do ro rang, tong hop du lieu chinh xac.
+- Diagnostic: Why did it happen? Co gia thuyet, so sanh phan khuc, phat hien bat thuong co bang chung.
+- Predictive: What is likely to happen? Co ngoai suy xu huong, mua vu, chi so dan xuat.
+- Prescriptive: What should we do? Co de xuat hanh dong kinh doanh duoc du lieu ho tro, dinh luong duoc trade-off.
+
+Diem cao nhat thuong den tu bai co cap do Prescriptive nhat quan tren nhieu phan tich.
+
+## 4. Phan 3 - Mo hinh du bao doanh thu
+
+Boi canh: dong vai nha khoa hoc du lieu tai cong ty thoi trang thuong mai dien tu Viet Nam. Doanh nghiep can du bao nhu cau/doanh thu chinh xac de toi uu ton kho, khuyen mai va logistics.
+
+Yeu cau chinh:
+
+- Du bao cot `Revenue` cho giai doan test an tu 01/01/2023 den 01/07/2024.
+- File nop la `submission.csv`, giu dung thu tu dong nhu `sample_submission.csv`.
+- Dinh dang file nop gom cac cot: `Date`, `Revenue`, `COGS`.
+
+Chi so danh gia:
+
+- MAE: cang thap cang tot.
+- RMSE: cang thap cang tot, phat nang hon voi sai so lon.
+- R2: cang cao cang tot, ly tuong gan 1.
+
+Rang buoc:
+
+- Khong dung du lieu ngoai.
+- Toan bo feature phai tao tu cac file duoc cung cap.
+- Ket qua phai tai lap duoc, can dinh kem code va dat random seed khi can.
+- Report can co giai thich mo hinh bang feature importance, SHAP, partial dependence plot hoac cach tuong duong.
+- Giai thich cac yeu to dan dong doanh thu bang ngon ngu kinh doanh.
+
+Dieu kien loai Phan 3:
+
+- Su dung `Revenue`/`COGS` cua tap test lam feature.
+- Su dung du lieu ngoai bo du lieu duoc cung cap.
+- Khong dinh kem ma nguon hoac ket qua khong the tai lap.
+
+## 5. Barem diem tong quan
+
+Tong diem toi da: 100 diem.
+
+| Phan | Noi dung | Diem | Ty trong |
+|---|---|---:|---:|
+| 1 | Cau hoi trac nghiem | 20 | 20% |
+| 2 | Truc quan hoa va phan tich EDA | 60 | 60% |
+| 3 | Mo hinh du bao doanh thu | 20 | 20% |
+| Tong |  | 100 | 100% |
+
+## 6. Cach cham Phan 1 - MCQ
+
+- 10 cau, moi cau dung duoc 2 diem.
+- Sai khong bi tru diem.
+- Khong tra loi duoc 0 diem.
+- Diem toi da: 20 diem.
+
+## 7. Cach cham Phan 2 - EDA va Data Storytelling
+
+Diem toi da: 60 diem, gom 4 tieu chi:
+
+| Tieu chi | Diem toi da | Noi dung cham |
+|---|---:|---|
+| Chat luong truc quan hoa | 15 | Bieu do co tieu de, nhan truc, chu thich; chon dung loai bieu do; trinh bay ro rang |
+| Chieu sau phan tich | 25 | Bao phu Descriptive, Diagnostic, Predictive, Prescriptive; lap luan logic; co so lieu ho tro |
+| Insight kinh doanh | 15 | Phat hien co gia tri thuc tien; de xuat hanh dong kha thi; lien ket du lieu voi quyet dinh kinh doanh |
+| Tinh sang tao va ke chuyen | 5 | Goc nhin doc dao, khong lap lai phan tich hien nhien; mach trinh bay coherent; ket hop nhieu bang co chu dich |
+
+Chi tiet muc diem:
+
+### Chat luong truc quan hoa - 15 diem
+
+- 13-15 diem: tat ca bieu do dat chuan, chon loai bieu do toi uu cho tung insight.
+- 8-12 diem: phan lon bieu do dat yeu cau, con thieu mot so nhan/chuthich.
+- 0-7 diem: bieu do thieu thong tin, kho doc hoac khong phu hop voi du lieu.
+
+### Chieu sau phan tich - 25 diem
+
+- 21-25 diem: dat ca 4 cap do Descriptive, Diagnostic, Predictive, Prescriptive mot cach nhat quan.
+- 14-20 diem: dat 3 cap do, phan Prescriptive con hoi hot.
+- 7-13 diem: chu yeu o cap Descriptive va Diagnostic.
+- 0-6 diem: chi mo ta be mat, thieu phan tich.
+
+### Insight kinh doanh - 15 diem
+
+- 13-15 diem: de xuat cu the, dinh luong duoc, co the ap dung ngay.
+- 8-12 diem: co de xuat nhung con chung chung.
+- 0-7 diem: thieu ket noi voi boi canh kinh doanh.
+
+### Tinh sang tao va ke chuyen - 5 diem
+
+- 4-5 diem: goc nhin doc dao, ket hop nhieu nguon du lieu, mach trinh bay thuyet phuc.
+- 2-3 diem: co diem sang tao nhung chua nhat quan.
+- 0-1 diem: phan tich de doan, khong co diem noi bat.
+
+## 8. Cach cham Phan 3 - Forecasting
+
+Diem toi da: 20 diem, gom 2 thanh phan:
+
+| Thanh phan | Diem toi da | Noi dung cham |
+|---|---:|---|
+| Hieu suat mo hinh | 12 | Dua tren MAE, RMSE, R2 tren tap test va xep hang tuong doi tren Kaggle leaderboard |
+| Bao cao ky thuat | 8 | Chat luong pipeline, feature engineering, cross-validation, xu ly leakage, explainability va tuan thu rang buoc |
+
+Chi tiet muc diem:
+
+### Hieu suat mo hinh - 12 diem
+
+- 10-12 diem: top leaderboard, MAE/RMSE thap, R2 cao.
+- 5-9 diem: hieu suat trung binh, mo hinh hoat dong nhung chua toi uu.
+- 3-4 diem: bai nop hop le nhung hieu suat thap.
+
+### Bao cao ky thuat - 8 diem
+
+- 7-8 diem: pipeline ro rang, cross-validation dung chieu thoi gian, co giai thich mo hinh bang SHAP/feature importance hoac tuong duong, tuan thu rang buoc.
+- 4-6 diem: pipeline du dung, giai thich con dinh tinh, mot so rang buoc chua xu ly ro.
+- 0-3 diem: thieu giai thich, khong kiem soat leakage, hoac khong the tai lap ket qua.
+
+## 9. Huong dan nop bai
+
+Can nop day du:
+
+1. Ket qua du bao tren Kaggle.
+2. Link Kaggle: https://www.kaggle.com/competitions/datathon-2026-round-1
+3. Report theo template LaTeX NeurIPS, toi da 4 trang khong tinh references va appendix.
+4. Report can co:
+   - Truc quan hoa va phan tich du lieu cho Phan 2.
+   - Phuong phap tiep can, pipeline mo hinh va ket qua thuc nghiem cho Phan 3.
+   - Link GitHub repository cua nhom, chua code, notebook va file submission.
+5. Form nop bai vong 1:
+   - Dap an trac nghiem.
+   - File report PDF.
+   - Link GitHub repository.
+   - Link submission tren Kaggle.
+   - Anh chup the sinh vien cua tat ca thanh vien.
+   - Xac nhan co it nhat 1 thanh vien co the tham gia truc tiep vong chung ket ngay 23/05/2026 tai VinUni, Ha Noi.
+
+Luu y quan trong: neu khong xac nhan kha nang tham gia truc tiep vong chung ket hoac khong cung cap day du anh the sinh vien, doi thi khong du dieu kien xet vao vong tiep theo.

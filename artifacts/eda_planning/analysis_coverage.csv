@@ -1,5 +1,0 @@
-﻿analysis_level,insight_count,insight_ids,coverage_note
-descriptive,6,"I1, I2, I3, I4, I5, I7",Covered
-diagnostic,7,"I1, I3, I4, I5, I6, I7, I8",Covered
-predictive,3,"I2, I6, I7",Covered
-prescriptive,8,"I1, I2, I3, I4, I5, I6, I7, I8",Covered
