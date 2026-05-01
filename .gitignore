@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+.ipynb_checkpoints/
+*.pyc
+
+# Outputs lon
+outputs/models/*.pkl
+outputs/models/*.txt
+outputs/models/*.cbm
+
+# Env
+.env
+venv/
+env/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
