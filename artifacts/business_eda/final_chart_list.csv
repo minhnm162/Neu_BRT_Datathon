@@ -1,0 +1,7 @@
+"chart_id","insight","file","report_priority","role_in_story"
+"C1","Demand seasonality and revenue peaks","charts/insight_01_monthly_revenue.png",1,"Revenue planning anchor"
+"C2","Channel value and repeat behavior","charts/insight_02_channel_value.png",2,"Marketing and customer channel decision"
+"C3","Return-rate pressure by product group","charts/insight_03_return_rate.png",3,"Customer experience and refund leakage"
+"C4","Delivery delay and rating risk","charts/insight_04_delay_rating.png",4,"Logistics experience signal"
+"C5","Stockout-based lost sales proxy","charts/insight_05_lost_sales_stockout.png",5,"Operational revenue protection"
+"C6","Overstock and sell-through imbalance","charts/insight_06_overstock_sellthrough.png",6,"Working-capital optimization"

@@ -1,0 +1,2 @@
+﻿checked_days,matching_days,all_days_match,note
+3833,3833,True,sales.Revenue equals sum(quantity * unit_price) by order_date in the current data.

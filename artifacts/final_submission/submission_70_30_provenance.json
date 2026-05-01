@@ -1,0 +1,11 @@
+{
+  "final_submission": "submission.csv",
+  "restored_from": "C:\\Users\\admin\\Downloads\\submission.csv",
+  "kaggle_public_score_remembered": 1027271.86127,
+  "blend_rule": {
+    "Revenue": "0.70 * old_forecast + 0.30 * stable_recursive_forecast",
+    "COGS": "1.00 * old_forecast"
+  },
+  "root_submission_status": "root submission.csv is locked by another process during this restore attempt; use artifacts/final_submission/submission.csv or submission_restored_70_30.csv until root is unlocked",
+  "notes": "Downloaded submission matches the true previous 70/30 blend candidate used as the best remembered public-score submission."
+}

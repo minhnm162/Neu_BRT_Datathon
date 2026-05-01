@@ -1,64 +1,105 @@
-# DATATHON 2026 Round 1 - NEU-BRT
+# DATATHON 2026 - NEU-BRT
 
-Official solution repository of team **NEU-BRT** for **DATATHON 2026 Round 1**.
+Repo này chứa bài làm vòng 1 DATATHON 2026 của đội NEU-BRT, gồm 3 phần:
 
-## Team Information
+| Phần | Nội dung | File chính |
+|---|---|---|
+| 1 | MCQ | `notebooks/02_mcq_solution.ipynb`, `artifacts/mcq/mcq_answers.csv` |
+| 2 | EDA và phân tích kinh doanh | `notebooks/04_business_eda.ipynb`, `notebooks/08_eda_supplementary.ipynb`, `artifacts/business_eda/` |
+| 3 | Forecasting Revenue/COGS | `notebooks/05_forecasting_baseline.ipynb` -> `07_model_interpretation_and_final_submission.ipynb` |
 
-- **Team name:** NEU-BRT
-- **Competition:** DATATHON 2026 - Round 1
-- **Submission deadline:** 23:59, 01/05/2026
+## Cấu trúc repo
 
-## Project Overview
+```text
+Neu_BRT_Datathon/
+├── dataset/                 # Dữ liệu gốc do BTC cung cấp
+├── notebooks/               # Notebook theo thứ tự xử lý 01-08
+├── artifacts/               # Kết quả trung gian và kết quả cuối
+├── aggregated_tables/       # Bảng tổng hợp phục vụ EDA/Power BI/report
+├── models/                  # Model đã train
+├── report/figures/          # Hình xuất cho báo cáo
+├── scripts/                 # Script tái lập và kiểm tra submission
+├── submission.csv           # File nộp Kaggle chính thức
+├── PROJECT_PIPELINE_SUMMARY.md
+├── PROJECT_RESULTS_SUMMARY.md
+└── requirements.txt
+```
 
-This repository contains our team's work for the preliminary round of DATATHON 2026, including:
+## Cài đặt
 
-- Data exploration and preprocessing
-- Feature engineering
-- Model training and evaluation
-- Kaggle submission pipeline
-- Final report and reproducibility materials
+```powershell
+python -m pip install -r requirements.txt
+```
 
-## Problem Statement
+## Tái lập file submission
 
-The competition focuses on forecasting future sales from historical business data.  
-The dataset simulates the operations of a Vietnamese fashion e-commerce business, covering multiple aspects such as:
+File nộp chính thức là:
 
-- Orders
-- Inventory
-- Promotions
-- Website traffic
+```text
+submission.csv
+```
 
-Our goal is to build a robust and reproducible machine learning pipeline that can generate accurate sales predictions.
+Tạo lại file này bằng:
 
-## Repository Structure
+```powershell
+python scripts\make_final_submission.py
+```
 
-```bash
-datathon-2026-round1-neu-brt/
-│── data/
-│   ├── raw/                 # Raw input data
-│   ├── processed/           # Cleaned / transformed data
-│
-│── notebooks/
-│   ├── 01_eda.ipynb         # Exploratory data analysis
-│   ├── 02_preprocessing.ipynb
-│   ├── 03_feature_engineering.ipynb
-│   ├── 04_modeling.ipynb
-│   └── 05_submission.ipynb
-│
-│── src/
-│   ├── data/                # Data loading and preprocessing scripts
-│   ├── features/            # Feature engineering modules
-│   ├── models/              # Training / inference code
-│   ├── utils/               # Helper functions
-│   └── config.py
-│
-│── reports/
-│   └── final_report.pdf     # Final submitted report
-│
-│── outputs/
-│   ├── figures/             # Plots and visualizations
-│   ├── predictions/         # Validation/test predictions
-│   └── submissions/         # Kaggle submission files
-│
-│── requirements.txt
-│── README.md
+Script đọc 2 nguồn dự báo:
+
+- `artifacts/final_submission/sources/old_forecast_for_70_30.csv`
+- `artifacts/final_submission/sources/stable_recursive_recovered_from_download.csv`
+
+Quy tắc blend cuối:
+
+```text
+Revenue = 70% old_forecast + 30% stable_recursive_forecast
+COGS    = 100% old_forecast
+```
+
+Kết quả cũng được lưu tại:
+
+```text
+artifacts/final_submission/submission.csv
+```
+
+## Kiểm tra submission
+
+```powershell
+python scripts\validate_submissions.py
+```
+
+Script kiểm tra:
+
+- đúng 548 dòng;
+- đúng cột `Date, Revenue, COGS`;
+- thứ tự ngày khớp `dataset/sample_submission.csv`;
+- không missing;
+- không có dự báo âm.
+
+Report kiểm tra:
+
+```text
+artifacts/final_submission/submission_validation_report.csv
+```
+
+## Kết quả forecasting chính
+
+| Mốc đánh giá | Target | MAE | RMSE | R2 |
+|---|---|---:|---:|---:|
+| One-step validation | Revenue | 551,478 | 756,691 | 0.796 |
+| Recursive validation | Revenue | 630,098 | 863,343 | 0.734 |
+| One-step validation | COGS | 479,393 | 652,306 | 0.800 |
+| Recursive validation | COGS | 556,873 | 740,160 | 0.742 |
+
+Public Kaggle tốt nhất đã ghi nhận cho bản final 70/30:
+
+```text
+1,027,271.86127
+```
+
+## Ghi chú rule
+
+- Không dùng dữ liệu ngoài.
+- `sample_submission.csv` chỉ dùng để lấy schema và thứ tự ngày.
+- Source forecast và script tạo submission đều nằm trong repo để có thể tái lập.

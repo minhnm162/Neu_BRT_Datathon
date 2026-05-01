@@ -1,0 +1,5 @@
+﻿table,grain,primary_use
+order_lines_enriched.csv,one row per order item line,MCQ and EDA joins
+returns_enriched.csv,one row per return record,EDA and return-pressure analysis
+inventory_monthly_enriched.csv,"one row per month, category, segment",inventory EDA
+daily_sales_features_final_grain.csv,one row per date,forecasting feature audit
