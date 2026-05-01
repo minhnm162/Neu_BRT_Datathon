@@ -1,108 +1,105 @@
-# DATATHON 2026 Round 1 - NEU-BRT
+# DATATHON 2026 - NEU-BRT
 
-Official solution repository of team **NEU-BRT** for **DATATHON 2026 Round 1**.
+Repo này chứa bài làm vòng 1 DATATHON 2026 của đội NEU-BRT, gồm 3 phần:
 
-## Team
+| Phần | Nội dung | File chính |
+|---|---|---|
+| 1 | MCQ | `notebooks/02_mcq_solution.ipynb`, `artifacts/mcq/mcq_answers.csv` |
+| 2 | EDA và phân tích kinh doanh | `notebooks/04_business_eda.ipynb`, `notebooks/08_eda_supplementary.ipynb`, `artifacts/business_eda/` |
+| 3 | Forecasting Revenue/COGS | `notebooks/05_forecasting_baseline.ipynb` -> `07_model_interpretation_and_final_submission.ipynb` |
 
-- Team name: **NEU-BRT**
-- Competition: **DATATHON 2026 - Round 1**
-- Submission deadline: **23:59, 01/05/2026**
-
-## Objective
-
-The project forecasts future e-commerce `Revenue` and `COGS` from historical business data covering orders, order items, products, customers, geography, payments, returns, reviews, inventory, shipments, promotions, web traffic, and sales.
-
-The work is organized around three competition needs:
-
-- MCQ answers
-- EDA and business storytelling
-- Forecasting and submission generation
-
-## Key Outputs
-
-| Area | Main Files |
-|---|---|
-| MCQ | `artifacts/mcq/mcq_answers.csv`, `notebooks/02_mcq_solution.ipynb` |
-| Data understanding | `artifacts/data_understanding/` |
-| Preprocessing summary | `artifacts/preprocessing/preprocessing_summary.md`, `artifacts/preprocessing/preprocessing_summary.csv` |
-| Power BI / EDA tables | `aggregated_tables/`, `aggregated_tables/README.md` |
-| Business EDA | `artifacts/business_eda/`, `artifacts/business_eda/charts/` |
-| Baseline models | `artifacts/forecast_baseline/` |
-| Feature engineering models | `artifacts/modeling/` |
-| Model result summary | `artifacts/modeling/model_results_summary.md` |
-| Final submission | `submission.csv`, `artifacts/final_submission/submission.csv` |
-
-## Model Summary
-
-Best baseline:
-
-| Model | Target | MAE | RMSE | R2 |
-|---|---|---:|---:|---:|
-| linear_time_features | Revenue | 1,016,413 | 1,416,690 | 0.284 |
-
-Best feature-engineering model:
-
-| Model | Target | MAE | RMSE | R2 |
-|---|---|---:|---:|---:|
-| xgboost | Revenue | 563,080 | 781,609 | 0.782 |
-
-Final recursive backtest:
-
-| Target | Model | MAE | RMSE | R2 |
-|---|---|---:|---:|---:|
-| Revenue | xgboost | 630,098 | 863,343 | 0.734 |
-| COGS | xgboost | 556,873 | 740,160 | 0.742 |
-
-Compared with the best baseline, the best feature-engineering model reduces Revenue RMSE by about **44.83%**.
-
-For a fuller summary, see `artifacts/modeling/model_results_summary.md`.
-
-## Data Processing Notes
-
-The raw competition files in `dataset/` are kept unchanged.
-
-Processed tables for Power BI and EDA are stored in `aggregated_tables/`. Their grain and usage are documented in:
-
-- `aggregated_tables/README.md`
-- `aggregated_tables/table_grain_map.csv`
-
-Preprocessing decisions are summarized in:
-
-- `notebooks/preprocessing_summary.ipynb`
-- `artifacts/preprocessing/preprocessing_summary.md`
-- `artifacts/preprocessing/preprocessing_summary.csv`
-
-## Leakage Controls
-
-- `sample_submission` is used only for required dates and output schema.
-- `sample_submission` `Revenue` and `COGS` values are ignored.
-- Sales-derived lag and rolling features use past values only.
-- Final future predictions are generated recursively.
-- Recursive 2022 walk-forward backtest is exported to `artifacts/final_submission/recursive_backtest_2022_scores.csv`.
-
-## Repository Structure
+## Cấu trúc repo
 
 ```text
-dataset/                         Raw competition data
-notebooks/                       Main analysis notebooks
-scripts/                         Reproducibility and artifact scripts
-aggregated_tables/               Processed Power BI / EDA tables
-artifacts/data_understanding/     Data audit outputs
-artifacts/preprocessing/          Preprocessing documentation
-artifacts/business_eda/           Business insight outputs and charts
-artifacts/forecast_baseline/      Baseline forecast outputs
-artifacts/modeling/               Feature engineering model outputs
-artifacts/final_submission/       Final validation and submission outputs
-models/                           Saved model files
-submission.csv                    Final root-level submission file
+Neu_BRT_Datathon/
+├── dataset/                 # Dữ liệu gốc do BTC cung cấp
+├── notebooks/               # Notebook theo thứ tự xử lý 01-08
+├── artifacts/               # Kết quả trung gian và kết quả cuối
+├── aggregated_tables/       # Bảng tổng hợp phục vụ EDA/Power BI/report
+├── models/                  # Model đã train
+├── report/figures/          # Hình xuất cho báo cáo
+├── scripts/                 # Script tái lập và kiểm tra submission
+├── submission.csv           # File nộp Kaggle chính thức
+├── PROJECT_PIPELINE_SUMMARY.md
+├── PROJECT_RESULTS_SUMMARY.md
+└── requirements.txt
 ```
 
-## Reproducibility
-
-To regenerate processed artifacts without modifying raw data:
+## Cài đặt
 
 ```powershell
-python scripts\pipeline_review_fixes.py
+python -m pip install -r requirements.txt
 ```
 
-Large generated tables, especially `aggregated_tables/order_lines_enriched.csv`, should be kept local or tracked with Git LFS. See `docs_git_large_file_fix.md`.
+## Tái lập file submission
+
+File nộp chính thức là:
+
+```text
+submission.csv
+```
+
+Tạo lại file này bằng:
+
+```powershell
+python scripts\make_final_submission.py
+```
+
+Script đọc 2 nguồn dự báo:
+
+- `artifacts/final_submission/sources/old_forecast_for_70_30.csv`
+- `artifacts/final_submission/sources/stable_recursive_recovered_from_download.csv`
+
+Quy tắc blend cuối:
+
+```text
+Revenue = 70% old_forecast + 30% stable_recursive_forecast
+COGS    = 100% old_forecast
+```
+
+Kết quả cũng được lưu tại:
+
+```text
+artifacts/final_submission/submission.csv
+```
+
+## Kiểm tra submission
+
+```powershell
+python scripts\validate_submissions.py
+```
+
+Script kiểm tra:
+
+- đúng 548 dòng;
+- đúng cột `Date, Revenue, COGS`;
+- thứ tự ngày khớp `dataset/sample_submission.csv`;
+- không missing;
+- không có dự báo âm.
+
+Report kiểm tra:
+
+```text
+artifacts/final_submission/submission_validation_report.csv
+```
+
+## Kết quả forecasting chính
+
+| Mốc đánh giá | Target | MAE | RMSE | R2 |
+|---|---|---:|---:|---:|
+| One-step validation | Revenue | 551,478 | 756,691 | 0.796 |
+| Recursive validation | Revenue | 630,098 | 863,343 | 0.734 |
+| One-step validation | COGS | 479,393 | 652,306 | 0.800 |
+| Recursive validation | COGS | 556,873 | 740,160 | 0.742 |
+
+Public Kaggle tốt nhất đã ghi nhận cho bản final 70/30:
+
+```text
+1,027,271.86127
+```
+
+## Ghi chú rule
+
+- Không dùng dữ liệu ngoài.
+- `sample_submission.csv` chỉ dùng để lấy schema và thứ tự ngày.
+- Source forecast và script tạo submission đều nằm trong repo để có thể tái lập.

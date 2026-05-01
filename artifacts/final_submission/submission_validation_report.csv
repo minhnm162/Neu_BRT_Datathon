@@ -1,0 +1,3 @@
+file,exists,rows,columns_match,row_count_matches,date_order_matches,no_missing_values,non_negative_predictions,revenue_mean,cogs_mean
+submission.csv,True,548,True,True,True,True,True,3799175.7439781018,3193734.7186496356
+artifacts\final_submission\submission.csv,True,548,True,True,True,True,True,3799175.7439781018,3193734.7186496356
